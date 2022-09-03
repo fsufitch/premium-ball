@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+// Protobuf definitions of:
+// https://docs.pokemontcg.io/api-reference/cards/card-object
+
+import "common.pokemontcg.proto";
+import "set.pokemontcg.proto";
+
+option go_package = "github.com/fsufitch/premium-ball/proto";
+
+message PokemonTCGCard {
+    string id = 1;
+    string name = 2;
+    string supertype = 3;
+    repeated string subtypes = 4;
+    string level = 5;
+    string hp = 6;
+    repeated string types = 7;
+    string evolvesFrom = 8;
+    string evolvesTo = 9;
+    repeated string rules = 10;
+    AncientTrait ancientTrait = 11;
+    repeated Ability abilities = 12;
+    repeated Attack attacks = 13;
+    repeated Weakness weaknesses = 14;
+    repeated Resistance resistances = 15;
+    repeated string retreatCost = 16;
+    int64 convertedRetreatCost = 17;
+    PokemonTCGSet set = 18;
+    string number = 19;
+    string artist = 20;
+    string rarity = 21;
+    string flavorText = 22;
+    repeated int64 nationalPokedexNumbers = 23;
+    Legalities legalities = 24;
+    string regulationMark = 25;
+    Images images = 26;
+    TCGPlayerDetails tcgPlayer = 27;
+    CardMarketPricesUSD cardMarket = 28;
+}
+
+message AncientTrait {
+    string name = 1;
+    string text = 2;
+}
+
+message Ability {
+    string name = 1;
+    string text = 2;
+    string type = 3;
+}
+
+message Attack {
+    repeated string cost = 1;
+    string name = 2;
+    string text = 3;
+    string damage = 4;
+    int64 convertedEnergyCost = 5;
+}
+
+message Weakness {
+    string type = 1;
+    string value = 2;
+}
+
+message Resistance {
+    string type = 1;
+    string value = 2;
+}
+
+message TCGPlayerDetails {
+    string url = 1;
+    string updatedat = 2;
+    TCGPlayerPricesUSD prices = 3;
+
+}
+
+message TCGPlayerPricesUSD {
+    float low = 1;
+    float mid = 2;
+    float high = 3;
+    float market = 4;
+    float directLow = 5;
+}
+
+message CardMarketDetails {
+    string url = 1;
+    string updatedAt = 2;
+    CardMarketPricesUSD prices = 3;
+}
+
+message CardMarketPricesUSD {
+    float averageSellPrice = 1;
+    float lowPrice = 2;
+    float trendPrice = 3;
+    float germanProLow = 4;
+    float suggestedPrice = 5;
+    float reverseHoloSell = 6;
+    float reverseHoloLow = 7;
+    float reverseHoloTrend = 8;
+    float lowPriceExPlus = 9;
+    float avg1 = 10;
+    float avg7 = 11;
+    float avg30 = 12;
+    float reverseHoloAvg1 = 13;
+    float reverseHoloAvg7 = 14;
+    float reverseHoloAvg30 = 15;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+// Common schema of pokemontcg.io API types
+
+option go_package = "github.com/fsufitch/premium-ball/proto";
+
+message Legalities {
+    string standard = 1;
+    string expanded = 2;
+    string unlimited = 3;
+}
+
+message Images {
+    string small = 1;
+    string large = 2;
+}

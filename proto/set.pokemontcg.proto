@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+// Protobuf definitions of:
+// https://docs.pokemontcg.io/api-reference/sets/set-object
+
+import "common.pokemontcg.proto";
+
+option go_package = "github.com/fsufitch/premium-ball/proto";
+
+message PokemonTCGSet {
+    string id = 1;
+    string name = 2;
+    string series = 3;
+    int64 printedTotal = 4;
+    int64 total = 5;
+    Legalities legalities = 6;
+    string ptcgoCode = 7;
+    string releaseDate = 8;
+    string updatedAt = 9;
+    Images images = 10;
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+// Premium-Ball specific card data
+
+import "card.pokemontcg.proto";
+
+option go_package = "github.com/fsufitch/premium-ball/proto";
+
+message PremiumBallCard {
+    // ID is the unique ID for this card (copied from pokemontcg.io)
+    string id = 1;
+
+    PokemonTCGCard cardData = 2;
+
+    // mechanicsHash is a hash of all gameplay-related data of a card (excluding art, flavor text, etc data)
+    string mechanicsHash = 3;
+}
