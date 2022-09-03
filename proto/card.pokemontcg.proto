@@ -36,7 +36,7 @@ message PokemonTCGCard {
     string regulationMark = 25;
     Images images = 26;
     TCGPlayerDetails tcgPlayer = 27;
-    CardMarketPricesUSD cardMarket = 28;
+    CardMarketDetails cardMarket = 28;
 }
 
 message AncientTrait {
@@ -71,7 +71,7 @@ message Resistance {
 message TCGPlayerDetails {
     string url = 1;
     string updatedat = 2;
-    TCGPlayerPricesUSD prices = 3;
+    map<string, TCGPlayerPricesUSD> pricesUSD = 3;
 
 }
 
@@ -86,10 +86,10 @@ message TCGPlayerPricesUSD {
 message CardMarketDetails {
     string url = 1;
     string updatedAt = 2;
-    CardMarketPricesUSD prices = 3;
+    CardMarketPricesEUR pricesEUR = 3;
 }
 
-message CardMarketPricesUSD {
+message CardMarketPricesEUR {
     float averageSellPrice = 1;
     float lowPrice = 2;
     float trendPrice = 3;
