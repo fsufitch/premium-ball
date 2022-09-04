@@ -1,23 +1,28 @@
-.PHONY: default
-default: all
+HERE=$(shell pwd)
 
-.PHONY: all
-all: generate-protos build
+.PHONY: default
+default: build
 
 .PHONY: build
-build: build/pb-create-archive
+.NOTPARALLEL: build
+build: generate-protos dist/pb-create-archive.amd64 dist/pb-create-archive.arm64
 
 .PHONY: clean
 clean: 
-	rm -rf build
-	make -C ../proto GO_OUT=${PWD}/proto clean
+	rm -rf dist
+	make -C ../proto GO_OUT=${HERE}/proto clean
 
 .PHONY: generate-protos
 generate-protos:
-	make -C ../proto GO_OUT=${PWD}/proto build-go
+	make -C ../proto GO_OUT=${HERE}/proto build-go
 
 ##########
 
-build/pb-create-archive: go.mod go.sum $(shell find . -name "*.go")
-	mkdir -p build
-	go build -o build/pb-create-archive ./archive/cmd/pb-create-archive/.
+dist/pb-create-archive.amd64: go.mod go.sum $(shell find . -name "*.go")
+	mkdir -p dist
+	GOOS=linux GOARCH=amd64 go build -v -o dist/pb-create-archive.amd64 ./archive/cmd/pb-create-archive/.
+
+dist/pb-create-archive.arm64: go.mod go.sum $(shell find . -name "*.go")
+	mkdir -p dist
+	GOOS=linux GOARCH=arm64 go build -v -o dist/pb-create-archive.arm64 ./archive/cmd/pb-create-archive/.
+	

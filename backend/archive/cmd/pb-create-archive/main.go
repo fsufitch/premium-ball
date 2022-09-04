@@ -84,6 +84,7 @@ func main() {
 	if err != nil {
 		panic(fmt.Errorf("could not create metadata file: %w", err))
 	} else if metaData, err := json.MarshalIndent(archiveMetadata{
+		Title:         "Pokemon Card Archive (from pokemontcg.io)",
 		RetrievalDate: time.Now().Format("2006/01/02"),
 		URL:           pokemonTCGSearchURL,
 		Count:         len(knownCardIDs),
@@ -118,6 +119,7 @@ func buildUniqueID(cardName string, cardID string, nSuffix int) string {
 }
 
 type archiveMetadata struct {
+	Title         string `json:"title"`
 	RetrievalDate string `json:"retrievalDate"`
 	URL           string `json:"url"`
 	Count         int    `json:"count"`

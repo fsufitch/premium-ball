@@ -1,8 +1,0 @@
-FROM ubuntu:22.04
-
-RUN apt-get update && apt-get -y install protobuf-compiler protoc-gen-go
-
-# Mount sources to /proto_src
-# Mount outputs to /proto_out/go and /proto_out/ts
-
-ENTRYPOINT [ "" ]
